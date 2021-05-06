@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.Portable" Version="3.7.1.189" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="TMFormat">
+      <HintPath>..\..\TMFormat\TMFormat\bin\Release\netstandard2.0\TMFormat.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
