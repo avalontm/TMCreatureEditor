@@ -10,6 +10,15 @@ namespace TMCreatureEditor.Helpers
 {
     public static class Extentions
     {
+        public static ImageSource FromFile(string file)
+        {
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.UriSource = new Uri(file);
+            image.EndInit();
+            return image;
+        }
+
         public static Stream ToStream(this ImageSource source)
         {
             PngBitmapEncoder encoder = new PngBitmapEncoder();
