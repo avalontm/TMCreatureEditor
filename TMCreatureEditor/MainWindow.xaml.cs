@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -17,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TMCreatureEditor.Helpers;
+using TMCreatureEditor.Models;
 using TMFormat.Formats;
 
 namespace TMCreatureEditor
@@ -32,6 +34,18 @@ namespace TMCreatureEditor
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        ObservableCollection<TMSprite> _sprites;
+
+        public ObservableCollection<TMSprite> sprites
+        {
+            get { return _sprites; }
+            set
+            {
+                _sprites = value;
+                OnPropertyChanged("sprites");
+            }
+        }
+
         TMCreature _creature;
 
         public TMCreature creature
@@ -39,6 +53,18 @@ namespace TMCreatureEditor
             get { return _creature; }
             set { _creature = value;
                 OnPropertyChanged("creature");
+            }
+        }
+
+        int _dirIndex;
+
+        public int DirIndex
+        {
+            get { return _dirIndex; }
+            set
+            {
+                _dirIndex = value;
+                OnPropertyChanged("DirIndex");
             }
         }
 
@@ -53,7 +79,6 @@ namespace TMCreatureEditor
         void onLoaded(object sender, RoutedEventArgs e)
         {
             creature = new TMCreature();
-
         }
 
         void onUnloaded(object sender, RoutedEventArgs e)
@@ -89,18 +114,47 @@ namespace TMCreatureEditor
 
                 Title = $"{creature.name} - {_file}";
 
-                // Texturas //
-                texture1.Source = creature.dirs[0].textures[0].ToImage();
-                texture2.Source = creature.dirs[0].textures[1].ToImage();
-                texture3.Source = creature.dirs[0].textures[2].ToImage();
-                texture4.Source = creature.dirs[0].textures[3].ToImage();
+                onLoadCreatureDir();
 
-                // Mascaras //
-                mask1.Source = creature.dirs[0].masks[0].ToImage();
-                mask2.Source = creature.dirs[0].masks[1].ToImage();
-                mask3.Source = creature.dirs[0].masks[2].ToImage();
-                mask4.Source = creature.dirs[0].masks[3].ToImage();
+                onLoadDirSprites();
             }
+        }
+
+        void onLoadDirSprites()
+        {
+            sprites = new ObservableCollection<TMSprite>();
+            int index = 0;
+            foreach (var texture in creature.dirs[DirIndex].textures)
+            {
+                index++;
+                TMSprite sprite = new TMSprite();
+                sprite.title = $"sprite_{index}";
+                sprite.image = texture.ToImage();
+
+                sprites.Add(sprite);
+            }
+
+            lstSprites.ItemsSource = sprites;
+        }
+
+        void onLoadCreatureDir()
+        {
+            if (creature == null)
+            {
+                return;
+            }
+
+            // Texturas //
+            texture1.Source = creature.dirs[DirIndex].textures[0].ToImage();
+            texture2.Source = creature.dirs[DirIndex].textures[1].ToImage();
+            texture3.Source = creature.dirs[DirIndex].textures[2].ToImage();
+            texture4.Source = creature.dirs[DirIndex].textures[3].ToImage();
+
+            // Mascaras //
+            mask1.Source = creature.dirs[DirIndex].masks[0].ToImage();
+            mask2.Source = creature.dirs[DirIndex].masks[1].ToImage();
+            mask3.Source = creature.dirs[DirIndex].masks[2].ToImage();
+            mask4.Source = creature.dirs[DirIndex].masks[3].ToImage();
         }
 
         void onSave(object sender, RoutedEventArgs e)
@@ -113,5 +167,16 @@ namespace TMCreatureEditor
 
         }
 
+        void onDirSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cmbBox = sender as ComboBox;
+            DirIndex = cmbBox.SelectedIndex;
+            onLoadCreatureDir();
+        }
+
+        void onSelectSpriteCahnged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
