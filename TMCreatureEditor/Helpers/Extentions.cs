@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using TMFormat.Helpers;
 
 namespace TMCreatureEditor.Helpers
 {
@@ -31,12 +32,13 @@ namespace TMCreatureEditor.Helpers
 
         public static ImageSource ToImage(this byte[] byteArray)
         {
+            Image image = new Image();
+
             try
             {
-                Image image = new Image();
                 using (MemoryStream stream = new MemoryStream(byteArray))
                 {
-                    image.Source = BitmapFrame.Create(stream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+                    image.Source = BitmapFrame.Create(stream, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
                     return image.Source;
                 }
             }

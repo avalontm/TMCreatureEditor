@@ -18,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TMCreatureEditor.Enums;
 using TMCreatureEditor.Helpers;
 using TMCreatureEditor.Models;
 using TMFormat.Formats;
@@ -45,6 +46,18 @@ namespace TMCreatureEditor
             {
                 _sprites = value;
                 OnPropertyChanged("sprites");
+            }
+        }
+
+        ObservableCollection<TMLoot> _loots;
+
+        public ObservableCollection<TMLoot> loots
+        {
+            get { return _loots; }
+            set
+            {
+                _loots = value;
+                OnPropertyChanged("loots");
             }
         }
 
@@ -113,11 +126,20 @@ namespace TMCreatureEditor
 
         void onNew(object sender, RoutedEventArgs e)
         {
+            if (!string.IsNullOrEmpty(FileCreature))
+            {
+                var result = MessageBox.Show(this,"¿Desea crear una nueva creatura?" , "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+            }
+
+            FileCreature = string.Empty;
             creature = new TMCreature();
             creature.name = "creatura";
             Title = $"{creature.name} - [sin guardar]";
-            onLoadCreatureDir();
-            onLoadDirSprites();
+            onLoadCreature();
         }
 
         void onOpen(object sender, RoutedEventArgs e)
@@ -142,12 +164,18 @@ namespace TMCreatureEditor
                     return;
                 }
 
-                Title = $"{creature.name} - {FileCreature}";
-                DirIndex = 0;
-                SpriteIndex = 0;
-                onLoadCreatureDir();
-                onLoadDirSprites();
+                Title = $"{creature.name} - [{FileCreature}]";
+                onLoadCreature();
             }
+        }
+
+        void onLoadCreature()
+        {
+            DirIndex = 0;
+            SpriteIndex = 0;
+            onLoadCreatureDir();
+            onLoadDirSprites();
+            onLoadLoots();
         }
 
         void onLoadDirSprites()
@@ -167,12 +195,15 @@ namespace TMCreatureEditor
             lstSprites.ItemsSource = sprites;
         }
 
-        void onLoadCreatureDir()
+        async void onLoadCreatureDir()
         {
             if (creature == null)
             {
                 return;
             }
+
+            gridWait.Visibility = Visibility.Visible;
+            await Task.Delay(10);
 
             // Texturas //
             texture1.Source = creature.dirs[DirIndex].sprites[SpriteIndex].textures[0].ToImage();
@@ -185,6 +216,10 @@ namespace TMCreatureEditor
             mask2.Source = creature.dirs[DirIndex].sprites[SpriteIndex].masks[1].ToImage();
             mask3.Source = creature.dirs[DirIndex].sprites[SpriteIndex].masks[2].ToImage();
             mask4.Source = creature.dirs[DirIndex].sprites[SpriteIndex].masks[3].ToImage();
+
+            gridWait.Visibility = Visibility.Hidden;
+            await Task.Delay(10);
+            Debug.WriteLine($"[onLoadCreatureDir] {DirIndex} => {SpriteIndex}");
         }
 
         void onSave(object sender, RoutedEventArgs e)
@@ -231,32 +266,146 @@ namespace TMCreatureEditor
             onLoadCreatureDir();
         }
 
-        void onSelectSpriteCahnged(object sender, SelectionChangedEventArgs e)
+        void onSelectSpriteChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lstSprites.SelectedIndex >= 0)
             {
                 SpriteIndex = lstSprites.SelectedIndex;
+                onLoadCreatureDir();
             }
         }
 
-        void onImportTexture(object sender, MouseButtonEventArgs e)
+        void onImportTexture1(object sender, MouseButtonEventArgs e)
+        {
+            onImportTextures(texture1, SlootEnum.Texture, 0);
+        }
+
+        void onImportTexture2(object sender, MouseButtonEventArgs e)
+        {
+            onImportTextures(texture2, SlootEnum.Texture, 1);
+        }
+
+        void onImportTexture3(object sender, MouseButtonEventArgs e)
+        {
+            onImportTextures(texture3, SlootEnum.Texture, 2);
+        }
+
+        void onImportTexture4(object sender, MouseButtonEventArgs e)
+        {
+            onImportTextures(texture4, SlootEnum.Texture, 3);
+        }
+
+        void onImportMask1(object sender, MouseButtonEventArgs e)
+        {
+            onImportTextures(mask1, SlootEnum.Mask, 0);
+        }
+
+        void onImportMask2(object sender, MouseButtonEventArgs e)
+        {
+            onImportTextures(mask2, SlootEnum.Mask, 1);
+        }
+
+        void onImportMask3(object sender, MouseButtonEventArgs e)
+        {
+            onImportTextures(mask3, SlootEnum.Mask, 2);
+        }
+
+        void onImportMask4(object sender, MouseButtonEventArgs e)
+        {
+            onImportTextures(mask4, SlootEnum.Mask, 3);
+        }
+
+        void onImportTextures(Image source, SlootEnum sloot, int index)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "images files (*.png)|*.png|All files (*.*)|*.*";
+            openFileDialog.Filter = "images files (*.png, *.bmp)|*.png; *.bmp;";
 
             if (openFileDialog.ShowDialog() == true)
             {
                 if (File.Exists(openFileDialog.FileName))
                 {
-                    Debug.WriteLine($"[onImportTexture] {openFileDialog.FileName}");
-                    byte[] _bytes = TMImageHelper.FromFile(openFileDialog.FileName);
-                    Debug.WriteLine($"[TEXTURE] {_bytes.Length}");
-                    creature.dirs[DirIndex].sprites[SpriteIndex].textures[0] = _bytes;
-                   
-                    texture1.Source = creature.dirs[DirIndex].sprites[SpriteIndex].textures[0].ToImage();
+                    byte[] _bytes = TMImageHelper.FromFile(openFileDialog.FileName, true);
+
+                    switch (sloot)
+                    {
+                        case SlootEnum.Texture:
+                            {
+                                creature.dirs[DirIndex].sprites[SpriteIndex].textures[index] = _bytes;
+                                if (creature.dirs[DirIndex].sprites[SpriteIndex].textures[index] != null)
+                                {
+                                    source.Source = creature.dirs[DirIndex].sprites[SpriteIndex].textures[index].ToImage();
+                                }
+                            }
+                            break;
+                        case SlootEnum.Mask:
+                            {
+                                creature.dirs[DirIndex].sprites[SpriteIndex].masks[index] = _bytes;
+                                if (creature.dirs[DirIndex].sprites[SpriteIndex].masks[index] != null)
+                                {
+                                    source.Source = creature.dirs[DirIndex].sprites[SpriteIndex].masks[index].ToImage();
+                                }
+                            }
+                            break;
+                    }
                 }
             }
+        }
 
+        void onLootNew(object sender, RoutedEventArgs e)
+        {
+            creature.loots.Add(new TMCreatureLoot());
+            onLoadLoots();
+        }
+
+        void onLoadLoots()
+        {
+            if (loots == null)
+            {
+                loots = new ObservableCollection<TMLoot>();
+            }
+
+            loots.Clear();
+
+            foreach (var loot in creature.loots)
+            {
+                loots.Add(new TMLoot() { id = loot.id, units = loot.count, drop = loot.probability });
+            }
+
+            lstLoot.ItemsSource = loots;
+        }
+
+        void onLootDelete(object sender, RoutedEventArgs e)
+        {
+            TMLoot loot = (sender as Button).DataContext as TMLoot;
+
+            if (loot != null)
+            {
+                var result = MessageBox.Show(this, "¿Desea eliminar este loot?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+
+                int index = loots.IndexOf(loot);
+
+                creature.loots.RemoveAt(index);
+                onLoadLoots();
+            }
+        }
+
+        void onLootSave(object sender, RoutedEventArgs e)
+        {
+            TMLoot loot = (sender as Button).DataContext as TMLoot;
+
+            if (loot != null)
+            {
+                int index = loots.IndexOf(loot);
+
+                creature.loots[index].id = loot.id;
+                creature.loots[index].count = loot.units;
+                creature.loots[index].probability = loot.drop;
+                onLoadLoots();
+            }
         }
     }
 }
