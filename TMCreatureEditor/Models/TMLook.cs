@@ -5,7 +5,7 @@ using System.Windows.Media;
 
 namespace TMCreatureEditor.Models
 {
-    public class TMSprite
+    public class TMLook
     {
         public string title { set; get; }
         public ImageSource image { set; get; }

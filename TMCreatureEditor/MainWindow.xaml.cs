@@ -37,9 +37,9 @@ namespace TMCreatureEditor
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        ObservableCollection<TMSprite> _sprites;
+        ObservableCollection<TMLook> _sprites;
 
-        public ObservableCollection<TMSprite> sprites
+        public ObservableCollection<TMLook> sprites
         {
             get { return _sprites; }
             set
@@ -180,12 +180,12 @@ namespace TMCreatureEditor
 
         void onLoadDirSprites()
         {
-            sprites = new ObservableCollection<TMSprite>();
+            sprites = new ObservableCollection<TMLook>();
             int index = 0;
             foreach (var spr in creature.dirs[DirIndex].sprites)
             {
                 index++;
-                TMSprite sprite = new TMSprite();
+                TMLook sprite = new TMLook();
                 sprite.title = $"sprite_{index}";
                 sprite.image = spr.textures[0].ToImage();
 
