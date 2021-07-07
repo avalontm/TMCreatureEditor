@@ -11,3 +11,8 @@
 - - Ataque
 - - Defensa
 - Loteo
+
+
+# Imagenes
+
+![Main](https://github.com/avalontm/TMCreatureEditor/blob/bdb36f150070986f76048b670777861c08b819a3/images/image_1.png)
