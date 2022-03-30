@@ -13,5 +13,16 @@ namespace TMCreatureEditor
     /// </summary>
     public partial class App : Application
     {
+        public static string file { private set; get; }
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            foreach (string arg in e.Args)
+            {
+                file = arg;
+                break;
+            }
+        }
     }
 }
