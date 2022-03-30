@@ -17,6 +17,10 @@
                     <Separator />
                     <MenuItem Header="_Exit" Click="onExit"/>
                 </MenuItem>
+
+                <MenuItem Header="_Opciones" FontSize="16">
+                    <MenuItem Header="_File Assosiate" Click="onFileAssosiate"/>
+                </MenuItem>
             </Menu>
 
             <Grid>
@@ -70,10 +74,10 @@
                                             </Grid.ColumnDefinitions>
 
                                             <Border Grid.Column="0" Margin="0,1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture4">
-                                                <Image x:Name="texture4" Width="48" Height="48" Stretch="Uniform"/>
+                                                <Image x:Name="texture4" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
                                             </Border>
                                             <Border Grid.Column="1" Margin="-1,1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture3">
-                                                <Image x:Name="texture3" Width="48" Height="48" Stretch="Uniform"/>
+                                                <Image x:Name="texture3" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
                                             </Border>
                                         </Grid>
 
@@ -83,10 +87,10 @@
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
                                             <Border Grid.Column="0" Margin="0,-1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture2">
-                                                <Image x:Name="texture2" Width="48" Height="48" Stretch="Uniform"/>
+                                                <Image x:Name="texture2" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
                                             </Border>
-                                            <Border Grid.Column="1" Margin="-1,-1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture1">
-                                                <Image x:Name="texture1" Width="48" Height="48" Stretch="Uniform"  />
+                                            <Border Grid.Column="1" Margin="-1,-1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture1" AllowDrop="True" Drop="onTextureDrop" DragEnter="onDragEnter" DragOver="onDragOver">
+                                                <Image x:Name="texture1" Width="48" Height="48" Stretch="Uniform" />
                                             </Border>
                                         </Grid>
                                     </Grid>
@@ -107,10 +111,10 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Border Grid.Column="0" Margin="0,1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask4">
-                                        <Image  x:Name="mask4" Width="48" Height="48" Stretch="Uniform"/>
+                                        <Image  x:Name="mask4" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
                                     </Border>
                                     <Border Grid.Column="1" Margin="-1,1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask3">
-                                        <Image  x:Name="mask3" Width="48" Height="48" Stretch="Uniform"/>
+                                        <Image  x:Name="mask3" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
                                     </Border>
                                 </Grid>
 
@@ -121,10 +125,10 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Border Grid.Column="0" Margin="0,-1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask2">
-                                        <Image x:Name="mask2" Width="48" Height="48" Stretch="Uniform"/>
+                                        <Image x:Name="mask2" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
                                     </Border>
                                     <Border Grid.Column="1" Margin="-1,-1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask1">
-                                        <Image  x:Name="mask1" Width="48" Height="48" Stretch="Uniform"/>
+                                        <Image  x:Name="mask1" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
                                     </Border>
                                 </Grid>
                             </Grid>

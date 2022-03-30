@@ -4,11 +4,17 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>tmc.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Resources\img_edit.png" />
     <None Remove="Resources\img_trash.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="tmc.ico" />
   </ItemGroup>
 
   <ItemGroup>

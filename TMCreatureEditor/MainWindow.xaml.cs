@@ -116,6 +116,21 @@ namespace TMCreatureEditor
 
         void onLoaded(object sender, RoutedEventArgs e)
         {
+            if (!string.IsNullOrEmpty(App.file))
+            {
+                FileCreature = App.file;
+                creature = TMCreature.Load(FileCreature);
+
+                if (creature == null)
+                {
+                    MessageBox.Show(this, "No se pudo cargar el archivo.\nFormato desconocido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                Title = $"{creature.name} - [{FileCreature}]";
+                onLoadCreature();
+                return;
+            }
             onNew(sender, e);
         }
 
@@ -406,6 +421,60 @@ namespace TMCreatureEditor
                 creature.loots[index].probability = loot.drop;
                 onLoadLoots();
             }
+        }
+
+        void onTextureDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var files = e.Data.GetData(DataFormats.FileDrop) as string[];
+                e.Handled = true;
+                Debug.WriteLine($"[DROP] {files}");
+            }
+        }
+
+        void onTextureDragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effects = DragDropEffects.Copy;
+        }
+
+        void onDragOver(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effects = DragDropEffects.Copy;
+                e.Handled = true;
+            }
+            else
+            {
+                e.Effects = DragDropEffects.None;
+            }
+        }
+
+        void onDragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effects = DragDropEffects.Copy;
+                e.Handled = true;
+            }
+            else
+            {
+                e.Effects = DragDropEffects.None;
+            }
+        }
+
+        void onFileAssosiate(object sender, RoutedEventArgs e)
+        {
+            /*
+            if (!FileAssociation.IsAssociated(".tmc"))
+            {
+               
+            }
+            */
+            string myExe = Process.GetCurrentProcess().MainModule.FileName;
+            FileAssociation.Associate(".tmc", "tmcfile", "tmc File", myExe, myExe);
         }
     }
 }
