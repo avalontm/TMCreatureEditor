@@ -9,8 +9,8 @@
     
     <Grid>
         <DockPanel>
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_File" FontSize="16">
+            <Menu DockPanel.Dock="Top" Background="{StaticResource Background}">
+                <MenuItem Header="_File" FontSize="16" >
                     <MenuItem Header="_New" Click="onNew"/>
                     <MenuItem Header="_Open" Click="onOpen"/>
                     <MenuItem Header="_Save" Click="onSave"/>
@@ -18,7 +18,7 @@
                     <MenuItem Header="_Exit" Click="onExit"/>
                 </MenuItem>
 
-                <MenuItem Header="_Opciones" FontSize="16">
+                <MenuItem Header="_Options" FontSize="16">
                     <MenuItem Header="_File Assosiate" Click="onFileAssosiate"/>
                 </MenuItem>
             </Menu>
@@ -29,403 +29,411 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Grid Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                    <Grid Grid.Column="0" Margin="5" Background="LightGray">
+                <Border Grid.Column="0" Margin="5" Background="{StaticResource Background}"  CornerRadius="5">
+                    <Grid >
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <!-- HEADER -->
-                        <Grid Grid.Row="0">
-                            <Label Content="Texturas" FontSize="16" FontWeight="DemiBold" HorizontalContentAlignment="Center"/>
-                        </Grid>
-
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Grid Grid.Column="0" Margin="2">
-                                <Grid Grid.Row="1">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-
-                                    <!-- TEXTURAS -->
-                                    <Grid Grid.Row="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-
-                                        <Grid Grid.Row="0" >
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <Border Grid.Column="0" Margin="0,1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture4" Tag="4" AllowDrop="True" Drop="onTextureDrop" DragEnter="onDragEnter" DragOver="onDragOver">
-                                                <Image x:Name="texture4" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
-                                            </Border>
-                                            <Border Grid.Column="1" Margin="-1,1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture3" Tag="3" AllowDrop="True" Drop="onTextureDrop" DragEnter="onDragEnter" DragOver="onDragOver">
-                                                <Image x:Name="texture3" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
-                                            </Border>
-                                        </Grid>
-
-                                        <Grid Grid.Row="1">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Border Grid.Column="0" Margin="0,-1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture2" Tag="2" AllowDrop="True" Drop="onTextureDrop" DragEnter="onDragEnter" DragOver="onDragOver">
-                                                <Image x:Name="texture2" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
-                                            </Border>
-                                            <Border Grid.Column="1" Margin="-1,-1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture1" Tag="1" AllowDrop="True" Drop="onTextureDrop" DragEnter="onDragEnter" DragOver="onDragOver">
-                                                <Image x:Name="texture1" Width="48" Height="48" Stretch="Uniform" />
-                                            </Border>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-
-                            <!-- MASCARAS -->
-                            <Grid Grid.Column="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Border Grid.Column="0" Margin="5" Background="#333334" BorderBrush="White" BorderThickness="1" CornerRadius="5">
+                            <Grid >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
+                                <!-- HEADER -->
                                 <Grid Grid.Row="0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Border Grid.Column="0" Margin="0,1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask4" Tag="4" AllowDrop="True" Drop="onMaskDrop" DragEnter="onDragEnter" DragOver="onDragOver">
-                                        <Image  x:Name="mask4" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
-                                    </Border>
-                                    <Border Grid.Column="1" Margin="-1,1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask3" Tag="3" AllowDrop="True" Drop="onMaskDrop" DragEnter="onDragEnter" DragOver="onDragOver">
-                                        <Image  x:Name="mask3" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
-                                    </Border>
+                                    <Label Content="Texturas" FontSize="16" FontWeight="DemiBold" HorizontalContentAlignment="Center"/>
                                 </Grid>
 
-                                <Grid Grid.Row="1" >
+                                <Grid Grid.Row="1">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Border Grid.Column="0" Margin="0,-1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask2" Tag="2" AllowDrop="True" Drop="onMaskDrop" DragEnter="onDragEnter" DragOver="onDragOver">
-                                        <Image x:Name="mask2" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
-                                    </Border>
-                                    <Border Grid.Column="1" Margin="-1,-1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask1" Tag="1" AllowDrop="True" Drop="onMaskDrop" DragEnter="onDragEnter" DragOver="onDragOver">
-                                        <Image  x:Name="mask1" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
-                                    </Border>
+
+                                    <Grid Grid.Column="0" Margin="2">
+                                        <Grid Grid.Row="1">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <!-- TEXTURAS -->
+                                            <Grid Grid.Row="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Grid Grid.Row="0" >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Border Grid.Column="0" Margin="0,1,0,0" Padding="0" BorderBrush="White" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture4" Tag="4" AllowDrop="True" Drop="onTextureDrop" DragEnter="onDragEnter" DragOver="onDragOver">
+                                                        <Image x:Name="texture4" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
+                                                    </Border>
+                                                    <Border Grid.Column="1" Margin="-1,1,0,0" Padding="0" BorderBrush="White" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture3" Tag="3" AllowDrop="True" Drop="onTextureDrop" DragEnter="onDragEnter" DragOver="onDragOver">
+                                                        <Image x:Name="texture3" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
+                                                    </Border>
+                                                </Grid>
+
+                                                <Grid Grid.Row="1">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Border Grid.Column="0" Margin="0,-1,0,0" Padding="0" BorderBrush="White" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture2" Tag="2" AllowDrop="True" Drop="onTextureDrop" DragEnter="onDragEnter" DragOver="onDragOver">
+                                                        <Image x:Name="texture2" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
+                                                    </Border>
+                                                    <Border Grid.Column="1" Margin="-1,-1,0,0" Padding="0" BorderBrush="White" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture1" Tag="1" AllowDrop="True" Drop="onTextureDrop" DragEnter="onDragEnter" DragOver="onDragOver">
+                                                        <Image x:Name="texture1" Width="48" Height="48" Stretch="Uniform" />
+                                                    </Border>
+                                                </Grid>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+
+                                    <!-- MASCARAS -->
+                                    <Grid Grid.Column="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid Grid.Row="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Border Grid.Column="0" Margin="0,1,0,0" Padding="0" BorderBrush="White" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask4" Tag="4" AllowDrop="True" Drop="onMaskDrop" DragEnter="onDragEnter" DragOver="onDragOver">
+                                                <Image  x:Name="mask4" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
+                                            </Border>
+                                            <Border Grid.Column="1" Margin="-1,1,0,0" Padding="0" BorderBrush="White" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask3" Tag="3" AllowDrop="True" Drop="onMaskDrop" DragEnter="onDragEnter" DragOver="onDragOver">
+                                                <Image  x:Name="mask3" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
+                                            </Border>
+                                        </Grid>
+
+                                        <Grid Grid.Row="1" >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Border Grid.Column="0" Margin="0,-1,0,0" Padding="0" BorderBrush="White" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask2" Tag="2" AllowDrop="True" Drop="onMaskDrop" DragEnter="onDragEnter" DragOver="onDragOver">
+                                                <Image x:Name="mask2" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
+                                            </Border>
+                                            <Border Grid.Column="1" Margin="-1,-1,0,0" Padding="0" BorderBrush="White" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask1" Tag="1" AllowDrop="True" Drop="onMaskDrop" DragEnter="onDragEnter" DragOver="onDragOver">
+                                                <Image  x:Name="mask1" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
+                                            </Border>
+                                        </Grid>
+                                    </Grid>
                                 </Grid>
+                            </Grid>
+                        </Border>
+                        
+                        <Grid Grid.Row="1" Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Content="Animaciones" FontSize="16" FontWeight="DemiBold" HorizontalContentAlignment="Center"/>
+                            <ComboBox Grid.Row="1" SelectedIndex="{Binding DirIndex}" FontSize="18" FontWeight="DemiBold" SelectionChanged="onDirSelectionChanged" >
+                                <ComboBoxItem IsSelected="True">Norte</ComboBoxItem>
+                                <ComboBoxItem>Este</ComboBoxItem>
+                                <ComboBoxItem>Sur</ComboBoxItem>
+                                <ComboBoxItem>Oeste</ComboBoxItem>
+                                <ComboBoxItem>Muerto</ComboBoxItem>
+                            </ComboBox>
+                        </Grid>
+
+                        <Grid Grid.Row="2" Margin="5">
+                            <Slider Minimum="0" Maximum="2" Value="{Binding SpriteIndex}" TickPlacement="BottomRight" IsSnapToTickEnabled="True" ValueChanged="onFrameChanged"/>
+                            <!--ListBox Name="lstSprites" HorizontalContentAlignment="Stretch" SelectionChanged="onSelectSpriteChanged">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0,2">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="100" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding title}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox-->
+                        </Grid>
+
+                        <Grid x:Name="gridWait" Grid.Row="0" Grid.RowSpan="3" Visibility="Hidden">
+                            <Grid Background="Black" Opacity="0.5"/>
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Label Content="Espere por favor..." Foreground="White" FontSize="18" FontWeight="DemiBold"/>
                             </Grid>
                         </Grid>
                     </Grid>
-                    
-                    <Grid Grid.Row="1" Margin="5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
+                </Border>
 
-                        <Label Grid.Row="0" Content="Animaciones" FontSize="16" FontWeight="DemiBold" HorizontalContentAlignment="Center"/>
-                        <ComboBox Grid.Row="1" SelectedIndex="{Binding DirIndex}" FontSize="18" FontWeight="DemiBold" SelectionChanged="onDirSelectionChanged" >
-                            <ComboBoxItem IsSelected="True">Norte</ComboBoxItem>
-                            <ComboBoxItem>Este</ComboBoxItem>
-                            <ComboBoxItem>Sur</ComboBoxItem>
-                            <ComboBoxItem>Oeste</ComboBoxItem>
-                            <ComboBoxItem>Muerto</ComboBoxItem>
-                        </ComboBox>
-                    </Grid>
+                <Border Grid.Column="1" Margin="5" Background="{StaticResource Background}" CornerRadius="5">
+                    <Grid >
+                        <ScrollViewer >
+                            <StackPanel Orientation="Vertical" Margin="10">
 
-                    <Grid Grid.Row="2" Margin="5">
-                        <ListBox Name="lstSprites" HorizontalContentAlignment="Stretch" SelectionChanged="onSelectSpriteChanged">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Margin="0,2">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="100" />
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Text="{Binding title}" />
-                                    </Grid>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </Grid>
+                                <Expander Header="Informacion" IsExpanded="True" Foreground="White">
+                                    <StackPanel Orientation="Vertical" Margin="10">
 
-                    <Grid x:Name="gridWait" Grid.Row="0" Grid.RowSpan="3" Visibility="Hidden">
-                        <Grid Background="Black" Opacity="0.5"/>
-                        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Label Content="Espere por favor..." Foreground="White" FontSize="18" FontWeight="DemiBold"/>
-                        </Grid>
-                    </Grid>
-                </Grid>
-
-                <Grid Grid.Column="1">
-                    <ScrollViewer >
-                        <StackPanel Orientation="Vertical" Margin="10">
-
-                            <Expander Header="Informacion" IsExpanded="True">
-                                <StackPanel Orientation="Vertical" Margin="10">
-
-                                    <Grid Margin="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="120"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Grid.Column="0" Margin="0,0,5,0" Content="Tipo:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
-                                        <ComboBox Grid.Column="1" SelectedIndex="{Binding creature.type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center">
-                                            <ComboBoxItem IsSelected="True">Creature</ComboBoxItem>
-                                            <ComboBoxItem>NPC</ComboBoxItem>
-                                        </ComboBox>
-                                    </Grid>
-                                    
-                                    <Grid Margin="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="120"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Grid.Column="0" Margin="0,0,5,0" Content="Nombre:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
-                                        <TextBox Grid.Column="1" Text="{Binding creature.name, Mode=TwoWay, FallbackValue='Nombre', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
-                                    </Grid>
- 
-                                </StackPanel>
-                            </Expander>
-
-                            <Expander Header="Propiedades" IsExpanded="True">
-                                <StackPanel Orientation="Vertical" Margin="10">
-
-                                    <Grid Margin="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        
-                                        <Grid Grid.Column="0">
+                                        <Grid Margin="5">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="120"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <Label Grid.Column="0" Margin="0,0,5,0" Content="Agresivo:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
-                                            <CheckBox Grid.Column="1" IsChecked="{Binding creature.is_agressive, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
+                                            <Label Grid.Column="0" Margin="0,0,5,0" Content="Tipo:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
+                                            <ComboBox Grid.Column="1" SelectedIndex="{Binding creature.type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center">
+                                                <ComboBoxItem IsSelected="True">Creature</ComboBoxItem>
+                                                <ComboBoxItem>NPC</ComboBoxItem>
+                                            </ComboBox>
                                         </Grid>
 
-                                        <Grid Grid.Column="1">
+                                        <Grid Margin="5">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="120"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <Label Grid.Column="0" Margin="0,0,5,0" Content="Centrar:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
-                                            <CheckBox Grid.Column="1" IsChecked="{Binding creature.is_offset, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
+                                            <Label Grid.Column="0" Margin="0,0,5,0" Content="Nombre:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
+                                            <TextBox Grid.Column="1" Text="{Binding creature.name, Mode=TwoWay, FallbackValue='Nombre', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
                                         </Grid>
-                                    </Grid>
-                                    <Grid Margin="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="120"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
 
-                                        <Label Grid.Column="0" Margin="0,0,5,0" Content="Respawn:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
-                                        <TextBox Grid.Column="1" Text="{Binding creature.timespawn, Mode=TwoWay, FallbackValue='60', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
-                                    </Grid>
-                                    
-                                    <Grid Margin="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="120"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
+                                    </StackPanel>
+                                </Expander>
 
-                                        <Label Grid.Column="0" Margin="0,0,5,0" Content="Movimiento:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
-                                        <TextBox Grid.Column="1" Text="{Binding creature.speed, Mode=TwoWay, FallbackValue='0.35', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
-                                    </Grid>
-                                    
-                                    <Grid Margin="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="120"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
+                                <Expander Header="Propiedades" IsExpanded="True" Foreground="White">
+                                    <StackPanel Orientation="Vertical" Margin="10">
 
-                                        <Label Grid.Column="0" Margin="0,0,5,0" Content="Level:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
-                                        <TextBox Grid.Column="1" Text="{Binding creature.level, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
-                                    </Grid>
+                                        <Grid Margin="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
 
-                                    <Grid Margin="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="120"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
+                                            <Grid Grid.Column="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
 
-                                        <Label Grid.Column="0" Margin="0,0,5,0" Content="Experiencia:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
-                                        <TextBox Grid.Column="1" Text="{Binding creature.experience, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
-                                    </Grid>
-                                    
-                                    <Grid Margin="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="120"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
+                                                <Label Grid.Column="0" Margin="0,0,5,0" Content="Agresivo:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
+                                                <CheckBox Grid.Column="1" IsChecked="{Binding creature.is_agressive, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
+                                            </Grid>
 
-                                        <Label Grid.Column="0" Margin="0,0,5,0" Content="Vida:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
-                                        <TextBox Grid.Column="1" Text="{Binding creature.heal, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
-                                    </Grid>
-                                    
-                                    <Grid Margin="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="120"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
+                                            <Grid Grid.Column="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
 
-                                        <Label Grid.Column="0" Margin="0,0,5,0" Content="Ataque:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
-                                        <TextBox Grid.Column="1" Text="{Binding creature.attack, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
-                                    </Grid>
-
-                                    <Grid Margin="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="120"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Grid.Column="0" Margin="0,0,5,0" Content="Defensa:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
-                                        <TextBox Grid.Column="1" Text="{Binding creature.defence, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
-                                    </Grid>
-                                </StackPanel>
-                            </Expander>
-
-                            <Expander Header="Ataque Magico" IsExpanded="True">
-                                <StackPanel Orientation="Vertical" Margin="10">
-                                    
-                                    <Grid Margin="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="120"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Grid.Column="0" Margin="0,0,5,0" Content="Magia:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
-                                        <CheckBox Grid.Column="1" IsChecked="{Binding creature.use_spell, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
-                                    </Grid>
-
-                                    <Grid Margin="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="120"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Grid.Column="0" Margin="0,0,5,0" Content="Tipo:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
-                                        <ComboBox Grid.Column="1" SelectedIndex="{Binding creature.spell_type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center">
-                                            <ComboBoxItem IsSelected="True">Fuego</ComboBoxItem>
-                                            <ComboBoxItem>Veneno</ComboBoxItem>
-                                            <ComboBoxItem>Electricidad</ComboBoxItem>
-                                            <ComboBoxItem>Psiquico</ComboBoxItem>
-                                        </ComboBox>
-                                    </Grid>
-                                </StackPanel>
-                            </Expander>
-                            
-                            <Expander Header="Ataque Distancia" IsExpanded="True">
-                                <StackPanel Orientation="Vertical" Margin="10">
-                                    
-                                    <Grid Margin="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="120"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Grid.Column="0" Margin="0,0,5,0" Content="Distancia:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
-                                        <CheckBox Grid.Column="1" IsChecked="{Binding creature.use_distance, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
-                                    </Grid>
-
-                                    <Grid Margin="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="120"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Grid.Column="0" Margin="0,0,5,0" Content="Tiles:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
-                                        <TextBox Grid.Column="1" Text="{Binding creature.distance_tiles, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
-                                    </Grid>
-                                </StackPanel>
-                            </Expander>
-                            
-                            <Expander Header="Loot" IsExpanded="True">
-                                <StackPanel Orientation="Vertical" Margin="10">
-                                    <Grid Margin="5">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
-
-                                        <Grid Margin="0,0,0,2">
-                                            <Button Click="onLootNew" Content="+" FontSize="16" FontWeight="DemiBold" Cursor="Hand" Width="32" Height="32" VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
+                                                <Label Grid.Column="0" Margin="0,0,5,0" Content="Centrar:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
+                                                <CheckBox Grid.Column="1" IsChecked="{Binding creature.is_offset, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
+                                            </Grid>
                                         </Grid>
-                                        
-                                        <ItemsControl Grid.Row="1" Name="lstLoot" HorizontalContentAlignment="Stretch" MinHeight="200" BorderBrush="Black" BorderThickness="1">
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Border Margin="2" Padding="5" Background="Gray" CornerRadius="5">
-                                                        <Grid>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="*"/>
-                                                                <ColumnDefinition Width="32"/>
-                                                                <ColumnDefinition Width="32"/>
-                                                            </Grid.ColumnDefinitions>
+                                        <Grid Margin="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
 
-                                                            <Grid Grid.Column="0">
+                                            <Label Grid.Column="0" Margin="0,0,5,0" Content="Respawn:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
+                                            <TextBox Grid.Column="1" Text="{Binding creature.timespawn, Mode=TwoWay, FallbackValue='60', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
+                                        </Grid>
+
+                                        <Grid Margin="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Column="0" Margin="0,0,5,0" Content="Movimiento:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
+                                            <TextBox Grid.Column="1" Text="{Binding creature.speed, Mode=TwoWay, FallbackValue='0.35', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
+                                        </Grid>
+
+                                        <Grid Margin="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Column="0" Margin="0,0,5,0" Content="Level:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
+                                            <TextBox Grid.Column="1" Text="{Binding creature.level, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
+                                        </Grid>
+
+                                        <Grid Margin="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Column="0" Margin="0,0,5,0" Content="Experiencia:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
+                                            <TextBox Grid.Column="1" Text="{Binding creature.experience, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
+                                        </Grid>
+
+                                        <Grid Margin="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Column="0" Margin="0,0,5,0" Content="Vida:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
+                                            <TextBox Grid.Column="1" Text="{Binding creature.heal, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
+                                        </Grid>
+
+                                        <Grid Margin="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Column="0" Margin="0,0,5,0" Content="Ataque:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
+                                            <TextBox Grid.Column="1" Text="{Binding creature.attack, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
+                                        </Grid>
+
+                                        <Grid Margin="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Column="0" Margin="0,0,5,0" Content="Defensa:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
+                                            <TextBox Grid.Column="1" Text="{Binding creature.defence, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Expander>
+
+                                <Expander Header="Ataque Magico" IsExpanded="True" Foreground="White"> 
+                                    <StackPanel Orientation="Vertical" Margin="10">
+
+                                        <Grid Margin="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Column="0" Margin="0,0,5,0" Content="Magia:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
+                                            <CheckBox Grid.Column="1" IsChecked="{Binding creature.use_spell, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
+                                        </Grid>
+
+                                        <Grid Margin="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Column="0" Margin="0,0,5,0" Content="Tipo:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
+                                            <ComboBox Grid.Column="1" SelectedIndex="{Binding creature.spell_type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center">
+                                                <ComboBoxItem IsSelected="True">Fuego</ComboBoxItem>
+                                                <ComboBoxItem>Veneno</ComboBoxItem>
+                                                <ComboBoxItem>Electricidad</ComboBoxItem>
+                                                <ComboBoxItem>Psiquico</ComboBoxItem>
+                                            </ComboBox>
+                                        </Grid>
+                                    </StackPanel>
+                                </Expander>
+
+                                <Expander Header="Ataque Distancia" IsExpanded="True" Foreground="White">
+                                    <StackPanel Orientation="Vertical" Margin="10">
+
+                                        <Grid Margin="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Column="0" Margin="0,0,5,0" Content="Distancia:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
+                                            <CheckBox Grid.Column="1" IsChecked="{Binding creature.use_distance, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
+                                        </Grid>
+
+                                        <Grid Margin="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Column="0" Margin="0,0,5,0" Content="Tiles:" FontSize="18" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
+                                            <TextBox Grid.Column="1" Text="{Binding creature.distance_tiles, Mode=TwoWay, FallbackValue='0', UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="18" VerticalContentAlignment="Center"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Expander>
+
+                                <Expander Header="Loot" IsExpanded="True" Foreground="White">
+                                    <StackPanel Orientation="Vertical" Margin="10">
+                                        <Grid Margin="5">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid Margin="0,0,0,2">
+                                                <Button Click="onLootNew" Content="+" FontSize="16" FontWeight="DemiBold" Cursor="Hand" Width="32" Height="32" VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
+                                            </Grid>
+
+                                            <ItemsControl Grid.Row="1" Name="lstLoot" HorizontalContentAlignment="Stretch" MinHeight="200" BorderBrush="Black" BorderThickness="1">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border Margin="2" Padding="5" Background="Gray" CornerRadius="5">
+                                                            <Grid>
                                                                 <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="*" />
-                                                                    <ColumnDefinition Width="*" />
-                                                                    <ColumnDefinition Width="*" />
+                                                                    <ColumnDefinition Width="*"/>
+                                                                    <ColumnDefinition Width="32"/>
+                                                                    <ColumnDefinition Width="32"/>
                                                                 </Grid.ColumnDefinitions>
 
-                                                                <TextBox Grid.Column="0" Text="{Binding id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=250}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
-                                                                <TextBox Grid.Column="1" Text="{Binding units, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=250}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                                                <TextBox Grid.Column="2" Text="{Binding drop, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=250}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                                            </Grid>
+                                                                <Grid Grid.Column="0">
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="*" />
+                                                                        <ColumnDefinition Width="*" />
+                                                                        <ColumnDefinition Width="*" />
+                                                                    </Grid.ColumnDefinitions>
 
-                                                            <Grid Grid.Column="1" Margin="2">
-                                                                <Button Click="onLootDelete" Cursor="Hand" Background="#ad1917" Padding="2" Width="32" Height="32">
-                                                                    <Button.Content>
-                                                                        <Image Margin="5" Source="/Resources/img_trash.png" Stretch="Uniform"/>
-                                                                    </Button.Content>
-                                                                </Button>
-                                                            </Grid>
+                                                                    <TextBox Grid.Column="0" Text="{Binding id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=250}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                                                    <TextBox Grid.Column="1" Text="{Binding units, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=250}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                                                    <TextBox Grid.Column="2" Text="{Binding drop, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=250}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                                                </Grid>
 
-                                                            <Grid Grid.Column="2" Margin="2">
-                                                                <Button Click="onLootSave" Cursor="Hand" Background="#1466a8" Padding="2" Width="32" Height="32">
-                                                                    <Button.Content>
-                                                                        <Image Margin="5" Source="/Resources/img_edit.png" Stretch="Uniform"/>
-                                                                    </Button.Content>
-                                                                </Button>
+                                                                <Grid Grid.Column="1" Margin="2">
+                                                                    <Button Click="onLootDelete" Cursor="Hand" Background="#ad1917" Padding="2" Width="32" Height="32">
+                                                                        <Button.Content>
+                                                                            <Image Margin="5" Source="/Resources/img_trash.png" Stretch="Uniform"/>
+                                                                        </Button.Content>
+                                                                    </Button>
+                                                                </Grid>
+
+                                                                <Grid Grid.Column="2" Margin="2">
+                                                                    <Button Click="onLootSave" Cursor="Hand" Background="#1466a8" Padding="2" Width="32" Height="32">
+                                                                        <Button.Content>
+                                                                            <Image Margin="5" Source="/Resources/img_edit.png" Stretch="Uniform"/>
+                                                                        </Button.Content>
+                                                                    </Button>
+                                                                </Grid>
                                                             </Grid>
-                                                        </Grid>
-                                                    </Border>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-                                    </Grid>
-                                </StackPanel>
-                            </Expander>
-                        </StackPanel>
-                    </ScrollViewer>
-                </Grid>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </Grid>
+                                    </StackPanel>
+                                </Expander>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </Border>
             </Grid>
             
         </DockPanel>

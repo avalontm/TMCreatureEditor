@@ -207,7 +207,7 @@ namespace TMCreatureEditor
                 sprites.Add(sprite);
             }
 
-            lstSprites.ItemsSource = sprites;
+            //lstSprites.ItemsSource = sprites;
         }
 
         async void onLoadCreatureDir()
@@ -278,16 +278,24 @@ namespace TMCreatureEditor
         {
             ComboBox cmbBox = sender as ComboBox;
             DirIndex = cmbBox.SelectedIndex;
+            SpriteIndex = 0;
             onLoadCreatureDir();
         }
 
         void onSelectSpriteChanged(object sender, SelectionChangedEventArgs e)
         {
+            /*
             if (lstSprites.SelectedIndex >= 0)
             {
                 SpriteIndex = lstSprites.SelectedIndex;
                 onLoadCreatureDir();
-            }
+            }*/
+        }
+
+        void onFrameChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            SpriteIndex = (int)e.NewValue;
+            onLoadCreatureDir();
         }
 
         void onImportTexture1(object sender, MouseButtonEventArgs e)
@@ -534,5 +542,6 @@ namespace TMCreatureEditor
             string myExe = Process.GetCurrentProcess().MainModule.FileName;
             FileAssociation.Associate(".tmc", "tmcfile", "tmc File", myExe, myExe);
         }
+
     }
 }
