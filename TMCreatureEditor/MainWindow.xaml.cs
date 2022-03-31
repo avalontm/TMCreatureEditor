@@ -339,30 +339,35 @@ namespace TMCreatureEditor
             {
                 if (File.Exists(openFileDialog.FileName))
                 {
-                    byte[] _bytes = TMImageHelper.FromFile(openFileDialog.FileName, true);
-
-                    switch (sloot)
-                    {
-                        case SlootEnum.Texture:
-                            {
-                                creature.dirs[DirIndex].sprites[SpriteIndex].textures[index] = _bytes;
-                                if (creature.dirs[DirIndex].sprites[SpriteIndex].textures[index] != null)
-                                {
-                                    source.Source = creature.dirs[DirIndex].sprites[SpriteIndex].textures[index].ToImage();
-                                }
-                            }
-                            break;
-                        case SlootEnum.Mask:
-                            {
-                                creature.dirs[DirIndex].sprites[SpriteIndex].masks[index] = _bytes;
-                                if (creature.dirs[DirIndex].sprites[SpriteIndex].masks[index] != null)
-                                {
-                                    source.Source = creature.dirs[DirIndex].sprites[SpriteIndex].masks[index].ToImage();
-                                }
-                            }
-                            break;
-                    }
+                    onLoadTextureFromFile(source, sloot, index, openFileDialog.FileName);
                 }
+            }
+        }
+
+        void onLoadTextureFromFile(Image source, SlootEnum sloot, int index, string file)
+        {
+            byte[] _bytes = TMImageHelper.FromFile(file, true);
+
+            switch (sloot)
+            {
+                case SlootEnum.Texture:
+                    {
+                        creature.dirs[DirIndex].sprites[SpriteIndex].textures[index] = _bytes;
+                        if (creature.dirs[DirIndex].sprites[SpriteIndex].textures[index] != null)
+                        {
+                            source.Source = creature.dirs[DirIndex].sprites[SpriteIndex].textures[index].ToImage();
+                        }
+                    }
+                    break;
+                case SlootEnum.Mask:
+                    {
+                        creature.dirs[DirIndex].sprites[SpriteIndex].masks[index] = _bytes;
+                        if (creature.dirs[DirIndex].sprites[SpriteIndex].masks[index] != null)
+                        {
+                            source.Source = creature.dirs[DirIndex].sprites[SpriteIndex].masks[index].ToImage();
+                        }
+                    }
+                    break;
             }
         }
 
@@ -425,14 +430,67 @@ namespace TMCreatureEditor
 
         void onTextureDrop(object sender, DragEventArgs e)
         {
+            Border border = sender as Border;
+
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 var files = e.Data.GetData(DataFormats.FileDrop) as string[];
-                e.Handled = true;
-                Debug.WriteLine($"[DROP] {files}");
+                string file = files[0];
+                string ext = System.IO.Path.GetExtension(file);
+
+                if (ext == ".png" || ext == ".bmp")
+                {
+                    switch (int.Parse(border.Tag.ToString()))
+                    {
+                        case 1:
+                            onLoadTextureFromFile(texture1, SlootEnum.Texture, 0, file);
+                            break;
+                        case 2:
+                            onLoadTextureFromFile(texture2, SlootEnum.Texture, 1, file);
+                            break;
+                        case 3:
+                            onLoadTextureFromFile(texture3, SlootEnum.Texture, 2, file);
+                            break;
+                        case 4:
+                            onLoadTextureFromFile(texture4, SlootEnum.Texture, 3, file);
+                            break;
+                    }
+                }
+
             }
         }
 
+        void onMaskDrop(object sender, DragEventArgs e)
+        {
+            Border border = sender as Border;
+
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var files = e.Data.GetData(DataFormats.FileDrop) as string[];
+                string file = files[0];
+                string ext = System.IO.Path.GetExtension(file);
+
+                if (ext == ".png" || ext == ".bmp")
+                {
+                    switch (int.Parse(border.Tag.ToString()))
+                    {
+                        case 1:
+                            onLoadTextureFromFile(mask1, SlootEnum.Mask, 0, file);
+                            break;
+                        case 2:
+                            onLoadTextureFromFile(mask2, SlootEnum.Mask, 1, file);
+                            break;
+                        case 3:
+                            onLoadTextureFromFile(mask3, SlootEnum.Mask, 2, file);
+                            break;
+                        case 4:
+                            onLoadTextureFromFile(mask4, SlootEnum.Mask, 3, file);
+                            break;
+                    }
+                }
+
+            }
+        }
         void onTextureDragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))

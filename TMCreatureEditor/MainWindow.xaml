@@ -73,10 +73,10 @@
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <Border Grid.Column="0" Margin="0,1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture4">
+                                            <Border Grid.Column="0" Margin="0,1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture4" Tag="4" AllowDrop="True" Drop="onTextureDrop" DragEnter="onDragEnter" DragOver="onDragOver">
                                                 <Image x:Name="texture4" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
                                             </Border>
-                                            <Border Grid.Column="1" Margin="-1,1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture3">
+                                            <Border Grid.Column="1" Margin="-1,1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture3" Tag="3" AllowDrop="True" Drop="onTextureDrop" DragEnter="onDragEnter" DragOver="onDragOver">
                                                 <Image x:Name="texture3" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
                                             </Border>
                                         </Grid>
@@ -86,10 +86,10 @@
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <Border Grid.Column="0" Margin="0,-1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture2">
+                                            <Border Grid.Column="0" Margin="0,-1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture2" Tag="2" AllowDrop="True" Drop="onTextureDrop" DragEnter="onDragEnter" DragOver="onDragOver">
                                                 <Image x:Name="texture2" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
                                             </Border>
-                                            <Border Grid.Column="1" Margin="-1,-1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture1" AllowDrop="True" Drop="onTextureDrop" DragEnter="onDragEnter" DragOver="onDragOver">
+                                            <Border Grid.Column="1" Margin="-1,-1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportTexture1" Tag="1" AllowDrop="True" Drop="onTextureDrop" DragEnter="onDragEnter" DragOver="onDragOver">
                                                 <Image x:Name="texture1" Width="48" Height="48" Stretch="Uniform" />
                                             </Border>
                                         </Grid>
@@ -110,10 +110,10 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Border Grid.Column="0" Margin="0,1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask4">
+                                    <Border Grid.Column="0" Margin="0,1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask4" Tag="4" AllowDrop="True" Drop="onMaskDrop" DragEnter="onDragEnter" DragOver="onDragOver">
                                         <Image  x:Name="mask4" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
                                     </Border>
-                                    <Border Grid.Column="1" Margin="-1,1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask3">
+                                    <Border Grid.Column="1" Margin="-1,1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask3" Tag="3" AllowDrop="True" Drop="onMaskDrop" DragEnter="onDragEnter" DragOver="onDragOver">
                                         <Image  x:Name="mask3" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
                                     </Border>
                                 </Grid>
@@ -124,10 +124,10 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Border Grid.Column="0" Margin="0,-1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask2">
+                                    <Border Grid.Column="0" Margin="0,-1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask2" Tag="2" AllowDrop="True" Drop="onMaskDrop" DragEnter="onDragEnter" DragOver="onDragOver">
                                         <Image x:Name="mask2" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
                                     </Border>
-                                    <Border Grid.Column="1" Margin="-1,-1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask1">
+                                    <Border Grid.Column="1" Margin="-1,-1,0,0" Padding="0" BorderBrush="Black" BorderThickness="1" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="onImportMask1" Tag="1" AllowDrop="True" Drop="onMaskDrop" DragEnter="onDragEnter" DragOver="onDragOver">
                                         <Image  x:Name="mask1" Width="48" Height="48" Stretch="Uniform" AllowDrop="True" />
                                     </Border>
                                 </Grid>
@@ -377,10 +377,10 @@
                                             <Button Click="onLootNew" Content="+" FontSize="16" FontWeight="DemiBold" Cursor="Hand" Width="32" Height="32" VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
                                         </Grid>
                                         
-                                        <ListBox Grid.Row="1" Name="lstLoot" HorizontalContentAlignment="Stretch" MinHeight="350">
-                                            <ListBox.ItemTemplate>
+                                        <ItemsControl Grid.Row="1" Name="lstLoot" HorizontalContentAlignment="Stretch" MinHeight="200" BorderBrush="Black" BorderThickness="1">
+                                            <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
-                                                    <Grid Margin="2">
+                                                    <Border Margin="2" Padding="5" Background="Gray" CornerRadius="5">
                                                         <Grid>
                                                             <Grid.ColumnDefinitions>
                                                                 <ColumnDefinition Width="*"/>
@@ -401,25 +401,25 @@
                                                             </Grid>
 
                                                             <Grid Grid.Column="1" Margin="2">
-                                                                <Button Click="onLootDelete" Cursor="Hand" Background="#ad1917" Padding="2">
+                                                                <Button Click="onLootDelete" Cursor="Hand" Background="#ad1917" Padding="2" Width="32" Height="32">
                                                                     <Button.Content>
-                                                                        <Image Source="/Resources/img_trash.png" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                                        <Image Margin="5" Source="/Resources/img_trash.png" Stretch="Uniform"/>
                                                                     </Button.Content>
                                                                 </Button>
                                                             </Grid>
 
                                                             <Grid Grid.Column="2" Margin="2">
-                                                                <Button Click="onLootSave" Cursor="Hand" Background="#1466a8" Padding="2">
+                                                                <Button Click="onLootSave" Cursor="Hand" Background="#1466a8" Padding="2" Width="32" Height="32">
                                                                     <Button.Content>
-                                                                        <Image Source="/Resources/img_edit.png" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                                        <Image Margin="5" Source="/Resources/img_edit.png" Stretch="Uniform"/>
                                                                     </Button.Content>
                                                                 </Button>
                                                             </Grid>
                                                         </Grid>
-                                                    </Grid>
+                                                    </Border>
                                                 </DataTemplate>
-                                            </ListBox.ItemTemplate>
-                                        </ListBox>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
                                     </Grid>
                                 </StackPanel>
                             </Expander>
