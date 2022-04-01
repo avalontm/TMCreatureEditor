@@ -160,7 +160,7 @@ namespace TMCreatureEditor
         void onOpen(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "TMF files (*.tmc)|*.tmc|All files (*.*)|*.*";
+            openFileDialog.Filter = "TMF files (*.tmc)|*.tmc";
 
             if (openFileDialog.ShowDialog() == true)
             {
@@ -295,6 +295,24 @@ namespace TMCreatureEditor
         void onFrameChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             SpriteIndex = (int)e.NewValue;
+            onLoadCreatureDir();
+        }
+
+        void onFrame1(object sender, RoutedEventArgs e)
+        {
+            SpriteIndex = 0;
+            onLoadCreatureDir();
+        }
+
+        void onFrame2(object sender, RoutedEventArgs e)
+        {
+            SpriteIndex = 1;
+            onLoadCreatureDir();
+        }
+
+        void onFrame3(object sender, RoutedEventArgs e)
+        {
+            SpriteIndex = 2;
             onLoadCreatureDir();
         }
 
@@ -541,6 +559,11 @@ namespace TMCreatureEditor
             */
             string myExe = Process.GetCurrentProcess().MainModule.FileName;
             FileAssociation.Associate(".tmc", "tmcfile", "tmc File", myExe, myExe);
+        }
+
+        void onPreferences(object sender, RoutedEventArgs e)
+        {
+
         }
 
     }

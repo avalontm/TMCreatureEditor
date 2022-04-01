@@ -9,16 +9,18 @@
     
     <Grid>
         <DockPanel>
-            <Menu DockPanel.Dock="Top" Background="{StaticResource Background}">
-                <MenuItem Header="_File" FontSize="16" >
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File" FontSize="16" Template="{DynamicResource MenuItemControlTemplate1}" >
                     <MenuItem Header="_New" Click="onNew"/>
                     <MenuItem Header="_Open" Click="onOpen"/>
                     <MenuItem Header="_Save" Click="onSave"/>
                     <Separator />
+                    <MenuItem Header="_Preferences" Click="onPreferences"/>
+                    <Separator />
                     <MenuItem Header="_Exit" Click="onExit"/>
                 </MenuItem>
 
-                <MenuItem Header="_Options" FontSize="16">
+                <MenuItem Header="_Options" FontSize="16" Template="{DynamicResource MenuItemControlTemplate1}">
                     <MenuItem Header="_File Assosiate" Click="onFileAssosiate"/>
                 </MenuItem>
             </Menu>
@@ -34,7 +36,9 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
                         <Border Grid.Column="0" Margin="5" Background="#333334" BorderBrush="White" BorderThickness="1" CornerRadius="5">
@@ -140,6 +144,18 @@
                         </Border>
                         
                         <Grid Grid.Row="1" Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="0" Margin="2" Height="32" Click="onFrame1" Content="Frame1" Foreground="White" />
+                            <Button Grid.Column="1" Margin="2" Height="32" Click="onFrame2" Content="Frame2" Foreground="White" />
+                            <Button Grid.Column="2" Margin="2" Height="32" Click="onFrame3" Content="Frame3" Foreground="White" />
+                        </Grid>
+                        
+                        <Grid Grid.Row="2" Margin="5">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -155,24 +171,8 @@
                             </ComboBox>
                         </Grid>
 
-                        <Grid Grid.Row="2" Margin="5">
-                            <Slider Minimum="0" Maximum="2" Value="{Binding SpriteIndex}" TickPlacement="BottomRight" IsSnapToTickEnabled="True" ValueChanged="onFrameChanged"/>
-                            <!--ListBox Name="lstSprites" HorizontalContentAlignment="Stretch" SelectionChanged="onSelectSpriteChanged">
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid Margin="0,2">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="100" />
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Text="{Binding title}" />
-                                        </Grid>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox-->
-                        </Grid>
-
-                        <Grid x:Name="gridWait" Grid.Row="0" Grid.RowSpan="3" Visibility="Hidden">
+                       
+                        <Grid x:Name="gridWait" Grid.Row="0" Grid.RowSpan="5" Visibility="Hidden">
                             <Grid Background="Black" Opacity="0.5"/>
                             <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Label Content="Espere por favor..." Foreground="White" FontSize="18" FontWeight="DemiBold"/>
