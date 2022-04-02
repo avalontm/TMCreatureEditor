@@ -48,7 +48,7 @@
 
   <ItemGroup>
     <Reference Include="TMFormat">
-      <HintPath>..\..\TMFormat\TMFormat\bin\Debug\netstandard2.0\TMFormat.dll</HintPath>
+      <HintPath>..\..\TMFormat\TMFormat\bin\Release\netstandard2.0\TMFormat.dll</HintPath>
     </Reference>
   </ItemGroup>
 

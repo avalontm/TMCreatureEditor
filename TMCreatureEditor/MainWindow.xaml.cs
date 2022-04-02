@@ -279,6 +279,7 @@ namespace TMCreatureEditor
             ComboBox cmbBox = sender as ComboBox;
             DirIndex = cmbBox.SelectedIndex;
             SpriteIndex = 0;
+            onFrames();
             onLoadCreatureDir();
         }
 
@@ -301,21 +302,46 @@ namespace TMCreatureEditor
         void onFrame1(object sender, RoutedEventArgs e)
         {
             SpriteIndex = 0;
+            onFrames();
             onLoadCreatureDir();
         }
 
         void onFrame2(object sender, RoutedEventArgs e)
         {
             SpriteIndex = 1;
+            onFrames();
             onLoadCreatureDir();
         }
 
         void onFrame3(object sender, RoutedEventArgs e)
         {
+        
             SpriteIndex = 2;
+            onFrames();
             onLoadCreatureDir();
         }
 
+        void onFrames()
+        {
+            switch (SpriteIndex)
+            {
+                case 0:
+                    BtnFrame1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#333337"));
+                    BtnFrame2.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#252526"));
+                    BtnFrame3.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#252526"));
+                    break;
+                case 1:
+                    BtnFrame1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#252526"));
+                    BtnFrame2.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#333337"));
+                    BtnFrame3.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#252526"));
+                    break;
+                case 2:
+                    BtnFrame1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#252526"));
+                    BtnFrame2.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#252526"));
+                    BtnFrame3.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#333337"));
+                    break;
+            }
+        }
         void onImportTexture1(object sender, MouseButtonEventArgs e)
         {
             onImportTextures(texture1, SlootEnum.Texture, 0);

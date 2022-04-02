@@ -6,7 +6,8 @@
 
     <Application.Resources>
         <Brush x:Key="Background">#3e3e42</Brush>
-        
+        <Brush x:Key="Black">#262626</Brush>
+       
         <Style x:Key="myWindowStyle" TargetType="Window">
             <Setter Property="Background">
                 <Setter.Value>
